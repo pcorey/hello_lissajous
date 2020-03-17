@@ -48,7 +48,7 @@ const Lissajous = ({ n }) => {
       .reduce((lissajous, [a, b]) => {
         let w = width / n;
         let h = height / n;
-        let d = Math.PI / 2;
+        let d = 0;
         let t = 0;
         let dt = 0.01;
         let scaleA = (w / a) * 0.25;
