@@ -51,19 +51,21 @@ const Lissajous = ({ n }) => {
         let d = Math.PI / 2;
         let t = 0;
         let dt = 0.01;
-        let scale = (w / Math.max(a, b)) * 0.25;
+        let scaleA = (w / a) * 0.25;
+        let scaleB = (w / b) * 0.25;
 
         let cx = (a - 1) * w + w / 2;
         let cy = (b - 1) * h + h / 2;
 
-        let x = cx + a * Math.sin(d) * scale;
-        let y = cy + b * Math.sin(0) * scale;
+        let x = cx + a * Math.sin(d) * scaleA;
+        let y = cy + b * Math.sin(0) * scaleB;
 
         lissajous[[a, b]] = {
           d,
           t,
           dt,
-          scale,
+          scaleA,
+          scaleB,
           cx,
           cy,
           x,
@@ -82,8 +84,8 @@ const Lissajous = ({ n }) => {
         .map(([a, b]) => {
           let l = lissajous[[a, b]];
           context.moveTo(l.x, l.y);
-          l.x = l.cx + a * Math.sin(a * l.t + l.d) * l.scale;
-          l.y = l.cy + b * Math.sin(b * l.t) * l.scale;
+          l.x = l.cx + a * Math.sin(a * l.t + l.d) * l.scaleA;
+          l.y = l.cy + b * Math.sin(b * l.t) * l.scaleB;
           context.lineTo(l.x, l.y);
           context.stroke();
 
